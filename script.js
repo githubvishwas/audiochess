@@ -17,7 +17,41 @@ catch(e) {
   console.error(e);
   alert('Audio move is not supported by your browser. Try in Google Chrome');
 }
+var audio_move_map = new Map(
+	[
+		["night", "N"], 
+		["knight", "N"],
+		["bishop", "B"],
+		["bisup", "B"],
+		["queen","Q"],
+		["king","K"],
+		["rook","R"],
+		["ruk","R"],
+		["MI","e"],
+		["takes","x"],
+		["short castle","0-0"],
+		["long castle","0-0-0"]	
+	]
+);
+console.log("audio_move_map"); 
+console.log(audio_move_map); 
+audio_keys = Array.from( audio_move_map.keys() );
+console.log(audio_keys); 
+txt = "NIGHT F3"
+mv = txt.toLowerCase().replace(/\s/g, '');
+console.log("=== " + mv);
 
+
+
+var arrayLength = audio_keys.length;
+mv1 = mv
+for (var i = 0; i < arrayLength; i++) {
+    if (mv1.includes(audio_keys[i])) {
+		mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]))
+	}
+    //Do something
+}
+console.log("finally -- " + mv)
 // If false, the recording will stop after a few seconds of silence.
 // When true, the silence period is longer (about 15 seconds),
 // allowing us to keep recording even when the user pauses. 
@@ -40,15 +74,26 @@ recognition.onresult = function(event) {
 	var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
 
   if(!mobileRepeatBug) {
-	
-	var ret = game.move(transcript.toLowerCase())
+	mv = transcript.toLowerCase().replace(/\s/g, '');
+	var ret = game.move(mv)
 	//console.log(ret)
 	if (ret === null) {
-		alert("Illegal move! We heard you as " + transcript);
+		var arrayLength = audio_keys.length;
+		mv1 = mv
+		for (var i = 0; i < arrayLength; i++) {
+			if (mv1.includes(audio_keys[i])) {
+				mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]))
+			}
+			var ret = game.move(mv)
+			if (ret === null) {
+				alert("Illegal move! We heard you as " + transcript);
+			}
+		}
+		
 		return
 	}
 	updateStatus();
-	
+	instructions.text("We heard you as " + transcript + " and interpreted as " + mv);
 	//getResponseMove();
 	getMove()
 
