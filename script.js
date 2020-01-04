@@ -77,7 +77,21 @@ recognition.onerror = function(event) {
 $('#start-record-btn').on('click', function(e) {
   recognition.start();
 });
+/*-----------------------------
+      Speech Synthesis 
+------------------------------*/
 
+function readOutLoud(message) {
+	var speech = new SpeechSynthesisUtterance();
+
+  // Set the text and voice attributes.
+	speech.text = message;
+	speech.volume = 1;
+	speech.rate = 1;
+	speech.pitch = 1;
+  
+	window.speechSynthesis.speak(speech);
+}
 //document.getElementById("status").innerHTML = "this is new code";
 
 // do not pick up pieces if the game is over
@@ -297,6 +311,7 @@ var makeWhiteFirstRandomMove = function () {
 };
 var makeBestMove = function () {
     var bestMove = getBestMove(game);
+	readOutLoud(bestMove)
     game.ugly_move(bestMove);
     board.position(game.fen());
 	updateStatus();
