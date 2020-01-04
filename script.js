@@ -5,6 +5,7 @@ var board,
   pgnEl = $('#pgn'),
   toggleEI = $('#toggle'),
   colorsEI = $('#col1');
+  var instructions = $('#recording-instructions');
   console.log("this is new code10");
   var elem = document.getElementById('col1');
   console.log(elem.selectedIndex);
