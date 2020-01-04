@@ -17,6 +17,19 @@ catch(e) {
   console.error(e);
   alert('Audio move is not supported by your browser. Try in Google Chrome');
 }
+var text_move_map = new Map(
+	[
+		["N","knight"],
+		["B","bishop"],
+		["Q","queen"],
+		["K","king"],
+		["R","rook"],
+		["x","takes"],
+		["0-0","king side castle"],
+		["0-0-0","longcastle"],
+		["#","checkmate"]
+	]
+);
 var audio_move_map = new Map(
 	[
 		["night", "N"], 
@@ -27,10 +40,13 @@ var audio_move_map = new Map(
 		["king","K"],
 		["rook","R"],
 		["ruk","R"],
-		["MI","e"],
+		["mi","e"],
 		["takes","x"],
-		["short castle","0-0"],
-		["long castle","0-0-0"]	
+		["shortcastle","0-0"],
+		["longcastle","0-0-0"],
+		["83","a3"],
+		["bp","b5"]
+		
 	]
 );
 console.log("audio_move_map"); 
@@ -52,6 +68,15 @@ for (var i = 0; i < arrayLength; i++) {
     //Do something
 }
 console.log("finally -- " + mv)
+move = "Nxf7"
+for (var i = 0; i < move.length; i++) {
+		txt = text_move_map.get(move[i])
+		if (txt == null) {
+			txt = move[i]
+		}
+		console.log(txt)
+	}
+	
 // If false, the recording will stop after a few seconds of silence.
 // When true, the silence period is longer (about 15 seconds),
 // allowing us to keep recording even when the user pauses. 
@@ -365,7 +390,15 @@ var makeBestMove = function () {
     var move = pgn[pgn.length - 1];
 	console.log(move)
 	for (var i = 0; i < move.length; i++) {
-		readOutLoud(move.charAt(i));
+		txt = text_move_map.get(move[i])
+		if (txt == null) {
+			txt = move[i]
+		}
+		readOutLoud(txt);
+	}
+	for (var i = 0; i < move.length; i++) {
+		
+		
 	}
    // renderMoveHistory(game.history());
     if (game.game_over()) {
