@@ -84,13 +84,13 @@ recognition.onresult = function(event) {
 			if (mv1.includes(audio_keys[i])) {
 				mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]))
 			}
-			var ret = game.move(mv)
-			if (ret === null) {
-				alert("Illegal move! We heard you as " + transcript);
-			}
+			
 		}
-		
-		return
+		var ret = game.move(mv)
+		if (ret === null) {
+			alert("Illegal move! We heard you as " + transcript + " and interpreted as " + mv);
+			return
+		}
 	}
 	updateStatus();
 	instructions.text("We heard you as " + transcript + " and interpreted as " + mv);
