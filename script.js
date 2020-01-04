@@ -74,9 +74,6 @@ recognition.onerror = function(event) {
 ------------------------------*/
 
 $('#start-record-btn').on('click', function(e) {
-  if (noteContent.length) {
-    noteContent += ' ';
-  }
   recognition.start();
 });
 
