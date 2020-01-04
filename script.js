@@ -311,10 +311,14 @@ var makeWhiteFirstRandomMove = function () {
 };
 var makeBestMove = function () {
     var bestMove = getBestMove(game);
+	
 	readOutLoud(bestMove)
     game.ugly_move(bestMove);
     board.position(game.fen());
 	updateStatus();
+	var pgn = game.pgn().split(" ");
+    var move = pgn[pgn.length - 1];
+	console.log(move)
    // renderMoveHistory(game.history());
     if (game.game_over()) {
         alert('Game over');
