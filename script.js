@@ -5,7 +5,7 @@ var board,
   pgnEl = $('#pgn-moves'),
   toggleEI = $('#toggle'),
   colorsEI = $('#col1');
-  var instructions = $('#recording-instructions');
+  //var instructions = $('#recording-instructions');
   console.log("this is new code10");
   var elem = document.getElementById('col1');
   console.log(elem.selectedIndex);
@@ -118,25 +118,25 @@ recognition.onresult = function(event) {
 		}
 	}
 	updateStatus();
-	instructions.text("We heard you as " + transcript + " and interpreted as " + mv);
+	//instructions.text("We heard you as " + transcript + " and interpreted as " + mv);
 	//getResponseMove();
 	getMove()
 
   }
 };	
-recognition.onstart = function() { 
-  instructions.text('Voice recognition activated. Try speaking into the microphone.');
-}
+//recognition.onstart = function() { 
+//  instructions.text('Voice recognition activated. Try speaking into the microphone.');
+//}
 
-recognition.onspeechend = function() {
-  instructions.text('You were quiet for a while so voice recognition turned itself off.');
-}
+//recognition.onspeechend = function() {
+//  instructions.text('You were quiet for a while so voice recognition turned itself off.');
+//}
 
-recognition.onerror = function(event) {
-  if(event.error == 'no-speech') {
-    instructions.text('No speech was detected. Try again.');  
-  };
-}
+//recognition.onerror = function(event) {
+//  if(event.error == 'no-speech') {
+//    instructions.text('No speech was detected. Try again.');  
+//  };
+//}
 
 
 
