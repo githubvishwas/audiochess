@@ -40,8 +40,8 @@ recognition.onresult = function(event) {
 	var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
 
   if(!mobileRepeatBug) {
-
-	var ret = game.move(transcript)
+	
+	var ret = game.move(transcript.toLowerCase())
 	//console.log(ret)
 	if (ret === null) {
 		alert("Illegal move! We heard you as " + transcript);
