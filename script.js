@@ -2,7 +2,7 @@ var board,
   game = new Chess(),
   statusEl = $('#status'),
   fenEl = $('#fen'),
-  pgnEl = $('#pgn'),
+  pgnEl = $('#pgn-moves'),
   toggleEI = $('#toggle'),
   colorsEI = $('#col1');
   var instructions = $('#recording-instructions');
@@ -25,8 +25,8 @@ var text_move_map = new Map(
 		["K","king"],
 		["R","rook"],
 		["x","takes"],
-		["0-0","king side castle"],
-		["0-0-0","longcastle"],
+		["O-O","king side castle"],
+		["O-O-O","longcastle"],
 		["#","checkmate"]
 	]
 );
@@ -42,11 +42,11 @@ var audio_move_map = new Map(
 		["ruk","R"],
 		["mi","e"],
 		["takes","x"],
-		["shortcastle","0-0"],
-		["longcastle","0-0-0"],
+		["shortcastle","O-O"],
+		["longcastle","O-O-O"],
 		["83","a3"],
-		["bp","b5"]
-		
+		["bp","b5"],
+		["dp","d5"]
 	]
 );
 console.log("audio_move_map"); 
@@ -471,8 +471,8 @@ var updateStatus = function() {
 
   setStatus(status);
   getLastCapture();
-  createTable();
-  updateScroll();
+  //createTable();
+  //updateScroll();
 
   statusEl.html(status);
   fenEl.html(game.fen());

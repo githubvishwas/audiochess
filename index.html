@@ -42,23 +42,13 @@
             <div class="col-xs-12 col-sm-6" style="position:relative;display: inline-block">
                 <div id="secondWindow">
 
-                    <div id="moveTable">
-                        <table class="table table-striped table-condensed" id="pgn">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>White</th>
-                                    <th>Black</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                    <p id="pgn-moves">""</p>
                     <div id="controls">
                         <form class="form-inline">
 
                             <!--button type="button" class="btn btn-default" id="backBtn" onclick="takeBack()";>Take Back</button-->
                             <!--button type="button" class="btn btn-default" id="reset" onclick="newGame()";>New Game</button-->
-                            <button type="button" class="btn btn-default" id="toggle" onclick="toggleBoard()";>Show Board</button>
+                            <button type="button" class="btn btn-default" id="toggle" onclick="toggleBoard()";>Hide Board</button>
 							<button type="button" class="btn btn-default" id="start-record-btn" title="Audio Move">Audio Move</button>
                             <select class="form-control" id="col1" onchange="changeBoard.call(this, event)">
                                 <option value="white">Play as White</option>
@@ -79,7 +69,7 @@
                                 <option value="4">Level: 4</option>
                                 <option value="5">Level: 5</option>
                             </select>
-							<p id="recording-instructions">For making moves by speaking, press the <strong>Audio Move</strong> button and allow access.</p>
+							<p id="recording-instructions">For making moves by speaking, press the <strong>Audio Move</strong> button, allow access if asked and mention your move very clearly.</p>
                         </form>
                     </div>
 
