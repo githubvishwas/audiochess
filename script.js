@@ -32,7 +32,7 @@ var text_move_map = new Map(
 );
 var audio_move_map = new Map(
 	[
-				["night", "N"], 
+		["night", "N"], 
 		["knight", "N"],
 		["bishop", "B"],
 		["bisup", "B"],
