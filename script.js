@@ -32,7 +32,7 @@ var text_move_map = new Map(
 );
 var audio_move_map = new Map(
 	[
-		["night", "N"], 
+				["night", "N"], 
 		["knight", "N"],
 		["bishop", "B"],
 		["bisup", "B"],
@@ -46,7 +46,22 @@ var audio_move_map = new Map(
 		["longcastle","O-O-O"],
 		["83","a3"],
 		["bp","b5"],
-		["dp","d5"]
+		["dp","d5"],
+		["depot","d4"],
+		["before","b4"],
+		["befur","b4"],
+		["text","takes"],
+		["the","d"],
+		["intex","Kx"],
+		["apple","a"],
+		["ball","b"],
+		["cat","c"],
+		["dog","d"],
+		["elephant","e"],
+		["fish","f"],
+		["grapes","g"],
+		["hen","h"],
+		["beeffry","Bf5"]
 	]
 );
 console.log("audio_move_map"); 
