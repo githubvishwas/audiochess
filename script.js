@@ -86,7 +86,7 @@ var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 recognition.lang = 'en-US';
-recognition.interimResults = true;
+recognition.interimResults = false;
 recognition.maxAlternatives = 5;
 console.log("audio_move_map"); 
 console.log(audio_move_map); 
@@ -160,11 +160,11 @@ recognition.onresult = function(event) {
 	for (let i = 0, len = event.results.length; i < len; i++) {
         let transcript1 = event.results[i][0].transcript;
         
-        resstr += transcript1 + ",";
+        //resstr += transcript1 + ",";
         for (let j = 0, len = event.results[i].length; j < len; j++) {
-			 let transcript2 = event.results[i][0].transcript;
+			 let transcript2 = event.results[i][j].transcript;
         
-			resstr += transcript2 + ",";
+			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
      }
 	 alert("res " + resstr)
