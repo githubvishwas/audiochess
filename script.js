@@ -1,4 +1,5 @@
 var board,
+recButton = ('#start-record-btn')
   game = new Chess(),
   statusEl = $('#status'),
   fenEl = $('#fen'),
@@ -218,6 +219,7 @@ document.body.ondblclick = function() {
   recognition.start();
 }
 $('#start-record-btn').on('click', function(e) {
+	
   recognition.start();
 });
 
