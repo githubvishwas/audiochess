@@ -148,13 +148,14 @@ recognition.onresult = function(event) {
   
   
   var transcript = event.results[current][0].transcript;
-	alert(transcript)
+	
   // Add the current transcript to the contents of our Note.
   // There is a weird bug on mobile, where everything is repeated twice.
   // There is no official solution so far so we have to handle an edge case.
 	var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
 //mobileRepeatBug = 0;
   if(!mobileRepeatBug) {
+	alert(event.results)
 	mv = transcript.toLowerCase().replace(/\s/g, '');
 	var ret = game.move(mv);
 	//console.log(ret)
