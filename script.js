@@ -32,8 +32,8 @@ var text_move_map = new Map(
 );
 var audio_move_map = new Map(
 	[
-		["night", "N"], 
 		["knight", "N"],
+		["night", "N"], 
 		["bishop", "B"],
 		["bisup", "B"],
 		["queen","Q"],
@@ -65,9 +65,27 @@ var audio_move_map = new Map(
 		["take","takes"],
 		["ate","8"],
 		["de","d"],
-		["file","5"]
+		["file","5"],
+		["define","d5"],
+		["defile","d5"],
+		["defy","d5"],
+		["pi","5"],
+		["date","d8"],
+		["fight","5"]
 	]
 );
+
+var moves = [ 'knight' , 'bishop' , 'queen', 'king', 'side', 'shortcastle', 'longcastle', 'takes', 'check', 'checkmate', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', '1', '2', '3', '4', '5', '6', '7', '8'];
+var grammar = '#JSGF V1.0; grammar moves; public <move> = ' + moves.join(' | ') + ' ;'
+
+
+var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+var speechRecognitionList = new SpeechGrammarList();
+speechRecognitionList.addFromString(grammar, 1);
+recognition.grammars = speechRecognitionList;
+recognition.lang = 'en-US';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
 console.log("audio_move_map"); 
 console.log(audio_move_map); 
 audio_keys = Array.from( audio_move_map.keys() );
@@ -101,6 +119,21 @@ for (var i = 0; i < move.length; i++) {
 // allowing us to keep recording even when the user pauses. 
 recognition.continuous = true;
 
+/*-----------------------------
+      Speech Synthesis 
+------------------------------*/
+
+function readOutLoud(message) {
+	var speech = new SpeechSynthesisUtterance();
+
+  // Set the text and voice attributes.
+	speech.text = message;
+	speech.volume = 1;
+	speech.rate = 1;
+	speech.pitch = 1;
+  
+	window.speechSynthesis.speak(speech);
+}
 // This block is called every time the Speech APi captures a line. 
 recognition.onresult = function(event) {
 
@@ -119,27 +152,29 @@ recognition.onresult = function(event) {
 
   if(!mobileRepeatBug) {
 	mv = transcript.toLowerCase().replace(/\s/g, '');
-	var ret = game.move(mv)
+	var ret = game.move(mv);
 	//console.log(ret)
 	if (ret === null) {
 		var arrayLength = audio_keys.length;
-		mv1 = mv
+		mv1 = mv;
 		for (var i = 0; i < arrayLength; i++) {
 			if (mv1.includes(audio_keys[i])) {
-				mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]))
+				mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]));
 			}
 			
 		}
-		var ret = game.move(mv)
-		if (ret === null) {
-			alert("Illegal move! We heard you as " + transcript + " and interpreted as " + mv);
-			return
+		var ret1 = game.move(mv);
+		if (ret1 === null) {
+		    readOutLoud("Sorry!");
+			alert("Illegal move! We heard you as " + transcript + " and interpreted as " + mv + "\nconfidence level was " + event.results[0][0].confidence);
+			
+			return;
 		}
 	}
 	updateStatus();
 	//instructions.text("We heard you as " + transcript + " and interpreted as " + mv);
 	//getResponseMove();
-	getMove()
+	getMove();
 
   }
 };	
@@ -162,25 +197,13 @@ recognition.onresult = function(event) {
 /*-----------------------------
       App buttons and input 
 ------------------------------*/
-
+document.body.ondblclick = function() {
+  recognition.start();
+}
 $('#start-record-btn').on('click', function(e) {
   recognition.start();
 });
-/*-----------------------------
-      Speech Synthesis 
-------------------------------*/
 
-function readOutLoud(message) {
-	var speech = new SpeechSynthesisUtterance();
-
-  // Set the text and voice attributes.
-	speech.text = message;
-	speech.volume = 1;
-	speech.rate = 1;
-	speech.pitch = 1;
-  
-	window.speechSynthesis.speak(speech);
-}
 //document.getElementById("status").innerHTML = "this is new code";
 
 // do not pick up pieces if the game is over
@@ -193,7 +216,7 @@ var minimaxRoot =function(depth, game, isMaximisingPlayer) {
     var bestMoveFound;
 
     for(var i = 0; i < newGameMoves.length; i++) {
-        var newGameMove = newGameMoves[i]
+        var newGameMove = newGameMoves[i];
         game.ugly_move(newGameMove);
         var value = minimax(depth - 1, game, -10000, 10000, !isMaximisingPlayer);
         game.undo();
