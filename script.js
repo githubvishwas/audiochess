@@ -176,7 +176,7 @@ recognition.onresult = function(event) {
 			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
 	}
-	alert("res " + resstr)
+	alert("res 1" + resstr)
 
 	var movefound = 0
 	//console.log(ret)
