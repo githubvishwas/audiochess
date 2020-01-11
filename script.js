@@ -191,14 +191,14 @@ recognition.onresult = function(event) {
 				if (mv1.includes(audio_keys[i])) {
 					mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]));
 				}
-				var ret1 = game.move(mv);
-				if (ret1 === null) {
-				//readOutLoud("Sorry!");
-					moveFound = 0
-				} else {
-					moveFound = 1
-					break;
-				}
+			}
+			var ret1 = game.move(mv);
+			if (ret1 === null) {
+			//readOutLoud("Sorry!");
+				moveFound = 0
+			} else {
+				moveFound = 1
+				break;
 			}
 		} else {
 			moveFound = 1
