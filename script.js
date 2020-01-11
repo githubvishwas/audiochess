@@ -149,7 +149,7 @@ recognition.onresult = function(event) {
   
   
   var transcript = event.results[current][0].transcript;
-	
+  var all_transcripts = []	
   // Add the current transcript to the contents of our Note.
   // There is a weird bug on mobile, where everything is repeated twice.
   // There is no official solution so far so we have to handle an edge case.
@@ -164,30 +164,45 @@ recognition.onresult = function(event) {
         //resstr += transcript1 + ",";
         for (let j = 0, len = event.results[i].length; j < len; j++) {
 			 let transcript2 = event.results[i][j].transcript;
-        
+			all_transcripts.append(transcript2)
 			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
      }
 	 alert("res " + resstr)
-	mv = transcript.toLowerCase().replace(/\s/g, '');
-	var ret = game.move(mv);
+	
+	var movefound = 0
 	//console.log(ret)
-	if (ret === null) {
-		var arrayLength = audio_keys.length;
-		mv1 = mv;
-		for (var i = 0; i < arrayLength; i++) {
-			if (mv1.includes(audio_keys[i])) {
-				mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]));
+	for (index = 0; index < all_transcripts.length; index++) { 
+		console.log(all_transcripts[index]); 
+		mv = all_transcripts[index].toLowerCase().replace(/\s/g, '');
+		var ret = game.move(mv);
+		if (ret === null) {
+			var arrayLength = audio_keys.length;
+			mv1 = mv;
+			for (var i = 0; i < arrayLength; i++) {
+				if (mv1.includes(audio_keys[i])) {
+					mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]));
+				}
+			
 			}
+			var ret1 = game.move(mv);
+			if (ret1 === null) {
+				//readOutLoud("Sorry!");
+				
 			
+				moveFound = 0
+			} else {
+				moveFound = 1
+				break;
+			}
+		} else {
+			moveFound = 1
+			break;
 		}
-		var ret1 = game.move(mv);
-		if (ret1 === null) {
-		    //readOutLoud("Sorry!");
-			alert("Illegal move! We heard you as " + transcript + " and interpreted as " + mv + "\nconfidence level was " + event.results[0][0].confidence);
-			
-			return;
-		}
+	} 
+	if (moveFound == 1) {
+		alert("Illegal move! We heard you as " + transcript + " and could not interpret it\n Best confidence level was " + event.results[0][0].confidence);
+		return;
 	}
 	updateStatus();
 	//instructions.text("We heard you as " + transcript + " and interpreted as " + mv);
