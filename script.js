@@ -155,7 +155,7 @@ recognition.onresult = function(event) {
 	var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
 //mobileRepeatBug = 0;
   if(!mobileRepeatBug) {
-	alert(event.results)
+	alert("results: " + event.results)
 	mv = transcript.toLowerCase().replace(/\s/g, '');
 	var ret = game.move(mv);
 	//console.log(ret)
