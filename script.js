@@ -86,7 +86,7 @@ var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 recognition.lang = 'en-US';
-recognition.interimResults = false;
+recognition.interimResults = true;
 recognition.maxAlternatives = 5;
 console.log("audio_move_map"); 
 console.log(audio_move_map); 
