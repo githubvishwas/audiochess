@@ -74,6 +74,10 @@ var audio_move_map = new Map(
 		["date","d8"],
 		["fight","5"],
 		["to","2"],
+		["tex","takes"],
+		["b-tex","btakes"],
+		["bi","b"],
+		["be","b"],
 		["for","4"]
 	]
 );
@@ -176,7 +180,7 @@ recognition.onresult = function(event) {
 			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
 	}
-	alert("res 3" + resstr)
+	alert("Result list: " + resstr)
 
 	var movefound = 0
 	//console.log(ret)
