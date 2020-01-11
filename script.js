@@ -79,7 +79,7 @@ var audio_move_map = new Map(
 
 var moves = [ 'knight' , 'bishop' , 'queen', 'king', 'side', 'shortcastle', 'longcastle', 'takes', 'check', 'checkmate', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', '1', '2', '3', '4', '5', '6', '7', '8'];
 var grammar = '#JSGF V1.0; grammar moves; public <move> = ' + moves.join(' | ') + ' ;'
-
+console.log("grammar: " + grammar)
 
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var speechRecognitionList = new SpeechGrammarList();
