@@ -145,7 +145,8 @@ recognition.onresult = function(event) {
   var current = event.resultIndex;
 
   // Get a transcript of what was said.
-  alert(event.results)
+  
+  alert(event.results.join())
   var transcript = event.results[current][0].transcript;
 
   // Add the current transcript to the contents of our Note.
@@ -168,7 +169,7 @@ recognition.onresult = function(event) {
 		}
 		var ret1 = game.move(mv);
 		if (ret1 === null) {
-		    readOutLoud("Sorry!");
+		    //readOutLoud("Sorry!");
 			alert("Illegal move! We heard you as " + transcript + " and interpreted as " + mv + "\nconfidence level was " + event.results[0][0].confidence);
 			
 			return;
