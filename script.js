@@ -61,7 +61,11 @@ var audio_move_map = new Map(
 		["fish","f"],
 		["grapes","g"],
 		["hen","h"],
-		["beeffry","Bf5"]
+		["beeffry","Bf5"],
+		["take","takes"],
+		["ate","8"],
+		["de","d"],
+		["file","5"]
 	]
 );
 console.log("audio_move_map"); 
@@ -86,7 +90,7 @@ console.log("finally -- " + mv)
 move = "Nxf7"
 for (var i = 0; i < move.length; i++) {
 		txt = text_move_map.get(move[i])
-		if (txt == null) {
+		if (txt === null) {
 			txt = move[i]
 		}
 		console.log(txt)
