@@ -88,7 +88,7 @@ speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 recognition.lang = 'en-US';
 recognition.interimResults = false;
-recognition.maxAlternatives = 5;
+recognition.maxAlternatives = 10;
 console.log("audio_move_map"); 
 console.log(audio_move_map); 
 audio_keys = Array.from( audio_move_map.keys() );
@@ -176,7 +176,7 @@ recognition.onresult = function(event) {
 			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
 	}
-	alert("res 2" + resstr)
+	alert("res 3" + resstr)
 
 	var movefound = 0
 	//console.log(ret)
