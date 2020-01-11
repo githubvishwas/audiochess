@@ -33,7 +33,7 @@ var text_move_map = new Map(
 );
 var audio_move_map = new Map(
 	[
-		["knight", "N"],
+        ["knight", "N"],
 		["night", "N"], 
 		["bishop", "B"],
 		["bisup", "B"],
@@ -51,7 +51,7 @@ var audio_move_map = new Map(
 		["depot","d4"],
 		["before","b4"],
 		["befur","b4"],
-		["text","takes"],
+		["text","x"],
 		["the","d"],
 		["intex","Kx"],
 		["apple","a"],
@@ -63,7 +63,7 @@ var audio_move_map = new Map(
 		["grapes","g"],
 		["hen","h"],
 		["beeffry","Bf5"],
-		["take","takes"],
+		["take","x"],
 		["ate","8"],
 		["de","d"],
 		["file","5"],
@@ -74,8 +74,8 @@ var audio_move_map = new Map(
 		["date","d8"],
 		["fight","5"],
 		["to","2"],
-		["tex","takes"],
-		["b-tex","btakes"],
+		["tex","x"],
+		["b-tex","bx"],
 		["bi","b"],
 		["be","b"],
 		["for","4"]
@@ -199,18 +199,18 @@ recognition.onresult = function(event) {
 			var ret1 = game.move(mv);
 			if (ret1 === null) {
 			//readOutLoud("Sorry!");
-				moveFound = 0
+				moveFound = 0;
 			} else {
-				moveFound = 1
+				moveFound = 1;
 				break;
 			}
 		} else {
-			moveFound = 1
+			moveFound = 1;
 			break;
 		}
 	} 
 	if (moveFound == 0) {
-		alert("Illegal move! We heard you as " + transcript + " and could not interpret it\n Best confidence level was " + event.results[0][0].confidence);
+		alert("Illegal move! We heard you as " + all_transcripts + " and could not interpret it\nBest confidence level was " + event.results[0][0].confidence);
 		return;
 	}
 	updateStatus();
