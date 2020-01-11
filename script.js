@@ -87,7 +87,7 @@ speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 recognition.lang = 'en-US';
 recognition.interimResults = false;
-recognition.maxAlternatives = 1;
+recognition.maxAlternatives = 5;
 console.log("audio_move_map"); 
 console.log(audio_move_map); 
 audio_keys = Array.from( audio_move_map.keys() );
@@ -145,6 +145,7 @@ recognition.onresult = function(event) {
   var current = event.resultIndex;
 
   // Get a transcript of what was said.
+  alert(event.results)
   var transcript = event.results[current][0].transcript;
 
   // Add the current transcript to the contents of our Note.
