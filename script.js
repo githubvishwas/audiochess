@@ -71,7 +71,9 @@ var audio_move_map = new Map(
 		["defy","d5"],
 		["pi","5"],
 		["date","d8"],
-		["fight","5"]
+		["fight","5"],
+		["to","2"],
+		["for","4"]
 	]
 );
 
@@ -149,7 +151,7 @@ recognition.onresult = function(event) {
   // There is a weird bug on mobile, where everything is repeated twice.
   // There is no official solution so far so we have to handle an edge case.
 	var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
-
+mobileRepeatBug = 0;
   if(!mobileRepeatBug) {
 	mv = transcript.toLowerCase().replace(/\s/g, '');
 	var ret = game.move(mv);
