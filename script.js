@@ -146,9 +146,9 @@ recognition.onresult = function(event) {
 
   // Get a transcript of what was said.
   
-  alert(event.results.join())
+  
   var transcript = event.results[current][0].transcript;
-
+	alert(transcript)
   // Add the current transcript to the contents of our Note.
   // There is a weird bug on mobile, where everything is repeated twice.
   // There is no official solution so far so we have to handle an edge case.
