@@ -79,7 +79,8 @@ var audio_move_map = new Map(
 		["b-tex","bx"],
 		["bi","b"],
 		["be","b"],
-		["for","4"]
+		["for","4"],
+		["detects","dx"]
 	]
 );
 
