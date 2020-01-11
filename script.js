@@ -140,36 +140,36 @@ function readOutLoud(message) {
 // This block is called every time the Speech APi captures a line. 
 recognition.onresult = function(event) {
 
-  // event is a SpeechRecognitionEvent object.
-  // It holds all the lines we have captured so far. 
-  // We only need the current one.
-  var current = event.resultIndex;
+	// event is a SpeechRecognitionEvent object.
+	// It holds all the lines we have captured so far. 
+	// We only need the current one.
+	var current = event.resultIndex;
 
-  // Get a transcript of what was said.
-  
-  
-  var transcript = event.results[current][0].transcript;
-  var all_transcripts = []	
-  // Add the current transcript to the contents of our Note.
-  // There is a weird bug on mobile, where everything is repeated twice.
-  // There is no official solution so far so we have to handle an edge case.
+	// Get a transcript of what was said.
+
+
+	var transcript = event.results[current][0].transcript;
+	var all_transcripts = []	
+	// Add the current transcript to the contents of our Note.
+	// There is a weird bug on mobile, where everything is repeated twice.
+	// There is no official solution so far so we have to handle an edge case.
 	var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
-//mobileRepeatBug = 0;
-  if(!mobileRepeatBug) {
-	//alert("results: " + event.results)
-	var resstr = ""
-	for (let i = 0, len = event.results.length; i < len; i++) {
-        let transcript1 = event.results[i][0].transcript;
-        
-        //resstr += transcript1 + ",";
-        for (let j = 0, len = event.results[i].length; j < len; j++) {
-			 let transcript2 = event.results[i][j].transcript;
+	//mobileRepeatBug = 0;
+	if(!mobileRepeatBug) {
+		//alert("results: " + event.results)
+		var resstr = ""
+		for (let i = 0, len = event.results.length; i < len; i++) {
+		let transcript1 = event.results[i][0].transcript;
+
+		//resstr += transcript1 + ",";
+		for (let j = 0, len = event.results[i].length; j < len; j++) {
+			let transcript2 = event.results[i][j].transcript;
 			all_transcripts.append(transcript2)
 			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
-     }
-	 alert("res " + resstr)
-	
+	}
+	alert("res " + resstr)
+
 	var movefound = 0
 	//console.log(ret)
 	for (index = 0; index < all_transcripts.length; index++) { 
@@ -180,16 +180,12 @@ recognition.onresult = function(event) {
 			var arrayLength = audio_keys.length;
 			mv1 = mv;
 			for (var i = 0; i < arrayLength; i++) {
-				if (mv1.includes(audio_keys[i])) {
-					mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]));
-				}
-			
+			if (mv1.includes(audio_keys[i])) {
+				mv = mv.replace(audio_keys[i],audio_move_map.get(audio_keys[i]));
 			}
 			var ret1 = game.move(mv);
 			if (ret1 === null) {
-				//readOutLoud("Sorry!");
-				
-			
+			//readOutLoud("Sorry!");
 				moveFound = 0
 			} else {
 				moveFound = 1
@@ -209,7 +205,7 @@ recognition.onresult = function(event) {
 	//getResponseMove();
 	getMove();
 
-  }
+	}
 };	
 //recognition.onstart = function() { 
 //  instructions.text('Voice recognition activated. Try speaking into the microphone.');
