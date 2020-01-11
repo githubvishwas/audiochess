@@ -6,6 +6,7 @@ recButton = ('#start-record-btn')
   pgnEl = $('#pgn-moves'),
   toggleEI = $('#toggle'),
   colorsEI = $('#col1');
+  recordIcon = $('#start-record-btn');
   //var instructions = $('#recording-instructions');
   console.log("this is new code10");
   var elem = document.getElementById('col1');
@@ -220,13 +221,15 @@ recognition.onresult = function(event) {
 
 	}
 };	
-//recognition.onstart = function() { 
-//  instructions.text('Voice recognition activated. Try speaking into the microphone.');
-//}
+recognition.onstart = function() { 
+  var b1 = document.getElementById("start-record-btn");
+   b1.style.color = 'green'
+}
 
-//recognition.onspeechend = function() {
-//  instructions.text('You were quiet for a while so voice recognition turned itself off.');
-//}
+recognition.onend = function() {
+  var b1 = document.getElementById("start-record-btn");
+			 b1.style.color = 'red'
+}
 
 //recognition.onerror = function(event) {
 //  if(event.error == 'no-speech') {
@@ -240,6 +243,7 @@ recognition.onresult = function(event) {
       App buttons and input 
 ------------------------------*/
 document.body.ondblclick = function() {
+  
   recognition.start();
 }
 $('#start-record-btn').on('click', function(e) {

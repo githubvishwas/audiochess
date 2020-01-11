@@ -34,6 +34,7 @@
 		
 		<script src="lib/chessboardjs/js/chess.js"></script>
 		<script src="lib/chessboardjs/js/chessboard-0.3.0.js"></script>
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
     </head>
 
     <body>
@@ -51,8 +52,11 @@
 
                             <!--button type="button" class="btn btn-default" id="backBtn" onclick="takeBack()";>Take Back</button-->
                             <!--button type="button" class="btn btn-default" id="reset" onclick="newGame()";>New Game</button-->
+							<i style='font-size:24px;color:red' class='fas' id="start-record-btn">&#xf130;</i>
                             <button type="button" class="btn btn-default" id="toggle" onclick="toggleBoard()";>Hide Board</button>
-							<button type="button" class="btn btn-default" id="start-record-btn" title="Audio Move">Audio Move</button>
+							<!--button type="button" class="btn btn-default" id="start-record-btn" title="Audio Move">Audio Move</button-->
+							
+							
                             <select class="form-control" id="col1" onchange="changeBoard.call(this, event)">
                                 <option value="white">Play as White</option>
                                 <option value="black">Play as Black</option>
@@ -72,7 +76,7 @@
                                 <option value="4">Level: 4</option>
                                 <option value="5">Level: 5</option>
                             </select>
-							<p id="recording-instructions"><strong>Important:</strong> Click on audio move button everytime before saying the move.<a href="./help.html"> Brief help for audio move option</a></p>
+							<p id="recording-instructions"><strong>Important:</strong> Double click anywhere on screen except buttons before saying the move.<a href="./help.html"> Click here for help doc</a></p>
                         </form>
                     </div>
 
@@ -123,7 +127,8 @@
 		 }
         function toggleBoard() {
             var x = document.getElementById("toggle");
-
+			var b1 = document.getElementById("start-record-btn");
+			 b1.style.color = 'green'
             if (x.innerHTML === "Show Board") {
                 x.innerHTML = "Hide Board";
 				var b = document.getElementById("board");
