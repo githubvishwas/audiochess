@@ -180,7 +180,7 @@ recognition.onresult = function(event) {
 			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
 	}
-	alert("Result list: " + resstr)
+	//alert("Result list: " + resstr)
 
 	var movefound = 0
 	//console.log(ret)
