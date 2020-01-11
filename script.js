@@ -176,7 +176,7 @@ recognition.onresult = function(event) {
 			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
 	}
-	alert("res 1" + resstr)
+	alert("res 2" + resstr)
 
 	var movefound = 0
 	//console.log(ret)
@@ -205,7 +205,7 @@ recognition.onresult = function(event) {
 			break;
 		}
 	} 
-	if (moveFound == 1) {
+	if (moveFound == 0) {
 		alert("Illegal move! We heard you as " + transcript + " and could not interpret it\n Best confidence level was " + event.results[0][0].confidence);
 		return;
 	}
