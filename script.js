@@ -93,6 +93,14 @@ console.log("audio_move_map");
 console.log(audio_move_map); 
 audio_keys = Array.from( audio_move_map.keys() );
 console.log(audio_keys); 
+
+
+var all_transcripts = []	
+all_transcripts.push("ex 1")
+all_transcripts.push("ex 2")
+for (index = 0; index < all_transcripts.length; index++) { 
+		console.log(all_transcripts[index]); 
+}
 txt = "NIGHT F3"
 mv = txt.toLowerCase().replace(/\s/g, '');
 console.log("=== " + mv);
@@ -164,7 +172,7 @@ recognition.onresult = function(event) {
 		//resstr += transcript1 + ",";
 		for (let j = 0, len = event.results[i].length; j < len; j++) {
 			let transcript2 = event.results[i][j].transcript;
-			all_transcripts.append(transcript2)
+			all_transcripts.push(transcript2)
 			resstr += transcript2 + ", " + event.results[i][j].confidence + " ,";
 		}
 	}
