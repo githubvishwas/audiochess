@@ -155,7 +155,19 @@ recognition.onresult = function(event) {
 	var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
 //mobileRepeatBug = 0;
   if(!mobileRepeatBug) {
-	alert("results: " + event.results)
+	//alert("results: " + event.results)
+	var resstr = ""
+	for (let i = 0, len = event.results.length; i < len; i++) {
+        let transcript1 = event.results[i][0].transcript;
+        
+        resstr += transcript1 + ",";
+        for (let j = 0, len = event.results[i].length; j < len; j++) {
+			 let transcript2 = event.results[i][0].transcript;
+        
+			resstr += transcript2 + ",";
+		}
+     }
+	 alert("res " + resstr)
 	mv = transcript.toLowerCase().replace(/\s/g, '');
 	var ret = game.move(mv);
 	//console.log(ret)
