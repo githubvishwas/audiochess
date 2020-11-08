@@ -500,7 +500,7 @@ var makeBestMove = function () {
 		if (txt == null) {
 			txt = move[i]
 		}
-		readOutLoud(txt);
+		//readOutLoud(txt);
 	}
 	for (var i = 0; i < move.length; i++) {
 		
