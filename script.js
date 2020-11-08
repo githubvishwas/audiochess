@@ -177,7 +177,7 @@ recognition.onresult = function(event) {
 
 	// Get a transcript of what was said.
 
-
+	alert(event.results)
 	var transcript = event.results[current][0].transcript;
 	var all_transcripts = []	
 	// Add the current transcript to the contents of our Note.
