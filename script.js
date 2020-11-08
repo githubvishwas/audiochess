@@ -80,11 +80,27 @@ var audio_move_map = new Map(
 		["bi","b"],
 		["be","b"],
 		["for","4"],
+		["anna","a"],
+		["belia","b"],
+		["ceasar","c"],
+		["david","d"],
+		["eva","e"],
+		["felix","f"],
+		["gustav","g"],
+		["hector","h"],
+		["eins","1"],
+		["zwei","2"],
+		["drei","3"],
+		["vier","4"],
+		["fnf","5"],
+		["sechs","6"],
+		["sieben ","7"],
+		["acht","8"],
 		["detects","dx"]
 	]
 );
 
-var moves = [ 'knight' , 'bishop' , 'queen', 'king', 'side', 'shortcastle', 'longcastle', 'takes', 'check', 'checkmate', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', '1', '2', '3', '4', '5', '6', '7', '8'];
+var moves = [ 'knight' , 'bishop' , 'queen', 'king', 'side', 'shortcastle', 'longcastle', 'takes', 'check', 'checkmate', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', '1', '2', '3', '4', '5', '6', '7', '8','anna','belia','ceasar','david','eva','felix','gustav','hector','eins','zwei','drei','vier','fnf','sechs','sieben','acht'];
 var grammar = '#JSGF V1.0; grammar moves; public <move> = ' + moves.join(' | ') + ' ;'
 console.log("grammar: " + grammar)
 
