@@ -177,9 +177,8 @@ recognition.onresult = function(event) {
 
 	// Get a transcript of what was said.
 
-	
+
 	var transcript = event.results[current][0].transcript;
-	
 	var all_transcripts = []	
 	// Add the current transcript to the contents of our Note.
 	// There is a weird bug on mobile, where everything is repeated twice.
@@ -203,7 +202,6 @@ recognition.onresult = function(event) {
 
 	var movefound = 0
 	//console.log(ret)
-	alert(all_transcripts)
 	for (index = 0; index < all_transcripts.length; index++) { 
 		console.log(all_transcripts[index]); 
 		mv = all_transcripts[index].toLowerCase().replace(/\s/g, '');
@@ -502,7 +500,7 @@ var makeBestMove = function () {
 		if (txt == null) {
 			txt = move[i]
 		}
-		//readOutLoud(txt);
+		readOutLoud(txt);
 	}
 	for (var i = 0; i < move.length; i++) {
 		
